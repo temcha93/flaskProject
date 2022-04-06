@@ -30,7 +30,18 @@ app = Flask(__name__)
 
 @app.route("/head_file/<int:size>/<path:relative_path>")
 def head_file(size: int, relative_path: str):
-    """put your code here"""
+    file = open(relative_path)
+    counter = 0
+    sumbols = []
+    for line in file:
+        for sum in line:
+            if counter >= size:
+                break
+            else:
+                sumbols.append(sum)
+                counter+=1
+
+    return sumbols
 
 
 if __name__ == "__main__":

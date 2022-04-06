@@ -11,9 +11,10 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/max_number/...")
-def max_number():
-    """Put your code here"""
+@app.route("/max_number/<path:numbers>")
+def max_number(numbers: str):
+    numbers_as_num = (int(it) for it in numbers.split('/'))
+    return f"Максимальное переданное число {max(numbers_as_num)}"
 
 
 if __name__ == "__main__":
